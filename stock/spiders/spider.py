@@ -20,6 +20,7 @@ class FootballSpider(scrapy.Spider):
                 if re.match('[\u4e00-\u9fa5]', company) and len(company) <= 3:
                     item['name'] = company
                     item['type'] = '个人'
+                    yield item
                 try:
 
                     text = quote(company, encoding='gb2312')
