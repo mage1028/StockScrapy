@@ -28,10 +28,10 @@ class FootballSpider(scrapy.Spider):
     def parse(self, response):
         item = StockItem()
         try:
+            item['name'] = response.meta['name']
             item['type'] = response.xpath(
                 '//*[@id="page"]/div[2]/div[2]/div[2]/div/div/div[3]/div[2]/table/tbody/tr[1]/td[2]/text()').extract()[
                 0]
-            item['name'] = response.meta['name']
             yield item
         except:
-            logging.info('------类型不存在---------')
+            logging.info('------{0}的类型不存在---------'.format(item['name']))
