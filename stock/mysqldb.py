@@ -1,6 +1,6 @@
 import pymysql
 import logging
-
+import re
 
 def connect():
     db = pymysql.connect(host='192.168.100.103', user='root', password='root', db='stock-trade', port=3306,
@@ -8,13 +8,15 @@ def connect():
     return db
 
 
-def select_company(x):
+def select_company():
     conn = connect()
-    sql = '''select stockHolder from holderStatistic order by id limit {0},1
-    '''.format(x)
+
+    sql2='''select stockHolder from holderStatistic
+    '''
     cursor = conn.cursor()
-    cursor.execute(sql)
-    company = cursor.fetchall()[0][0]
+    cursor.execute(sql2)
+    company = cursor.fetchall()
+    conn.close()
     return company
 
 
@@ -32,3 +34,6 @@ def insert(type, name):
         logging.exception(e)
         logging.exception(type)
         logging.exception(name)
+
+
+
