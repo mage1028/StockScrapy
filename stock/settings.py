@@ -27,8 +27,8 @@ ROBOTSTXT_OBEY = False
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 LOG_ENABLED = True
-DOWNLOAD_DELAY = 0.2
-RANDOMIZE_DOWNLOAD_DELAY = True
+DOWNLOAD_DELAY = 1
+
 LOG_FILE = "/hbasestorage/spider/spider_logs/stock_type/scrapy.log"
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16

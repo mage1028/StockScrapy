@@ -12,11 +12,14 @@ class FootballSpider(scrapy.Spider):
     name = 'stock'
 
     def start_requests(self):
-
+        item = StockItem()
         companys = select_company()
         for i in range(1, len(companys)):
             company = companys[i][0]
             if not re.match('基金代码', company):
+                if re.match('[\u4e00-\u9fa5]', company) and len(company) <= 3:
+                    item['name'] = company
+                    item['type'] = '个人'
                 try:
 
                     text = quote(company, encoding='gb2312')
