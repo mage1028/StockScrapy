@@ -22,7 +22,7 @@ def select_company():
 
 def insert(type, name):
     conn = connect()
-    sql = '''update stockHolder set Holderproporty='{0}' where stockHolder='{1}'
+    sql = '''update holderStatistic set Holderproporty='{0}' where stockHolder='{1}'
     '''.format(type, name)
     cursor = conn.cursor()
     try:
