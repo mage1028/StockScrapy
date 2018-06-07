@@ -11,7 +11,7 @@ def connect():
 def select_company():
     conn = connect()
 
-    sql2='''select stockHolder from holderStatistic
+    sql2='''select stockHolder from holderStatistic where holderProporty is null
     '''
     cursor = conn.cursor()
     cursor.execute(sql2)
@@ -34,6 +34,4 @@ def insert(type, name):
         logging.exception(e)
         logging.exception(type)
         logging.exception(name)
-
-
 

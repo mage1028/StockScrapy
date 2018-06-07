@@ -17,17 +17,13 @@ class FootballSpider(scrapy.Spider):
         for i in range(1, len(companys)):
             company = companys[i][0]
             if not re.match('基金代码', company):
-                if re.match('[\u4e00-\u9fa5]', company) and len(company) <= 3:
-                    item['name'] = company
-                    item['type'] = '个人'
-                    yield item
-                try:
-
-                    text = quote(company, encoding='gb2312')
-                    url = 'http://data.eastmoney.com/gdfx/search.aspx?kwd=' + text
-                    yield Request(url=url, callback=self.parse, meta={'name': copy.deepcopy(company)})
-                except:
-                    pass
+                if re.match('[\u4e00-\u9fa5]', company):
+                    try:
+                        text = quote(company, encoding='gb2312')
+                        url = 'http://data.eastmoney.com/gdfx/search.aspx?kwd=' + text
+                        yield Request(url=url, callback=self.parse, meta={'name': copy.deepcopy(company)})
+                    except:
+                        pass
 
     def parse(self, response):
         item = StockItem()
